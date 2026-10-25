@@ -1,0 +1,21 @@
+
+{
+  "id": "./",
+  "name": "Filhos da Além — IMEA de Peregrinos",
+  "short_name": "Filhos da Além",
+  "description": "Sistema de gestão da organização Filhos da Além da IMEA de Peregrinos.",
+  "lang": "pt-AO",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f6f3",
+  "theme_color": "#103D2D",
+  "icons": [
+    {
+      "src": "imea-logo.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

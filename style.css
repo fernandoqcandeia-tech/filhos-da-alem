@@ -1,0 +1,857 @@
+
+/* =====================================
+   FILHOS DA ALÉM — DESIGN PROFISSIONAL
+   ===================================== */
+
+:root {
+  --verde: #123c2d;
+  --verde-escuro: #0b281e;
+  --verde-claro: #1d6045;
+  --dourado: #d6ad57;
+  --fundo: #f4f6f3;
+  --branco: #ffffff;
+  --texto: #26352e;
+  --texto-suave: #718078;
+  --borda: #e2e9e3;
+  --vermelho: #c0392b;
+  --sombra: 0 8px 25px rgba(18, 60, 45, 0.07);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  min-height: 100vh;
+  font-size: 14px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(214, 173, 87, 0.55);
+  outline-offset: 2px;
+}
+
+/* CABEÇALHO */
+
+.topo {
+  background: var(--verde-escuro);
+  color: var(--branco);
+  padding: 18px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 3px solid var(--dourado);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.escudo {
+  width: 49px;
+  height: 49px;
+  border: 2px solid var(--dourado);
+  border-radius: 14px 14px 14px 4px;
+  display: grid;
+  place-items: center;
+  color: var(--dourado);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+.logo h1 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.logo span {
+  display: block;
+  color: #c8d7ce;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+#menuBtn {
+  display: none;
+  border: 1px solid #426454;
+  background: transparent;
+  color: white;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 20px;
+}
+
+/* NAVEGAÇÃO */
+
+nav {
+  background: var(--verde);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+nav button {
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: #d7e5dc;
+  padding: 16px 17px;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+nav button:hover,
+nav button.ativo {
+  color: var(--dourado);
+  border-bottom-color: var(--dourado);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* CONTEÚDO */
+
+main {
+  max-width: 1250px;
+  width: 90%;
+  margin: 30px auto;
+}
+
+.pagina {
+  display: none;
+  animation: aparecer 0.25s ease;
+}
+
+.pagina.ativa {
+  display: block;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h2 {
+  font-size: 23px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* BANNER INICIAL */
+
+.hero {
+  background: linear-gradient(120deg, var(--verde-escuro), var(--verde-claro));
+  border-radius: 18px;
+  padding: 34px;
+  margin-bottom: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+}
+
+.hero::after {
+  content: "FA";
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 95px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.055);
+  pointer-events: none;
+}
+
+.hero h2 {
+  color: var(--dourado);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero p {
+  color: #e0e9e3;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+/* CARTÕES */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px;
+  margin-bottom: 26px;
+}
+
+.card {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: var(--sombra);
+  min-width: 0;
+}
+
+.card h3 {
+  color: var(--verde);
+  font-size: 25px;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.card p {
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+/* BOTÕES */
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+
+button:not(#menuBtn):not(.fechar):not(.apagar) {
+  border-radius: 9px;
+}
+
+.acoes button,
+.cabecalho button,
+#formulario > button {
+  background: var(--verde);
+  color: white;
+  border: 1px solid var(--verde);
+  padding: 11px 16px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.acoes button:hover,
+.cabecalho button:hover,
+#formulario > button:hover {
+  background: var(--verde-claro);
+  transform: translateY(-1px);
+}
+
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.cabecalho h2 {
+  margin-bottom: 0;
+}
+
+.cabecalho button {
+  background: var(--dourado);
+  border-color: var(--dourado);
+  color: var(--verde-escuro);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cabecalho button:hover {
+  background: #e6c477;
+}
+
+/* PESQUISA E CAMPOS */
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid #dce4dd;
+  border-radius: 9px;
+  background: white;
+  color: var(--texto);
+  margin-bottom: 13px;
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--verde-claro);
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+#pesquisaMembro {
+  max-width: 450px;
+  margin-bottom: 22px;
+}
+
+/* LISTAS E REGISTOS */
+
+#listaDashboardAtividades,
+#listaMembros,
+#listaAcompanhamentos,
+#listaAtividades,
+#listaFinanceiro {
+  display: grid;
+  gap: 13px;
+}
+
+.item,
+.registo,
+.lista-item {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 3px 12px rgba(18, 60, 45, 0.035);
+  overflow-wrap: anywhere;
+}
+
+.item h3,
+.registo h3,
+.lista-item h3 {
+  color: var(--verde);
+  margin-bottom: 7px;
+}
+
+.item p,
+.registo p,
+.lista-item p {
+  color: var(--texto-suave);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.item button,
+.registo button,
+.lista-item button {
+  margin: 12px 7px 0 0;
+  padding: 8px 11px;
+  border: 1px solid var(--borda);
+  background: #f6f8f6;
+  color: var(--verde);
+  font-size: 11px;
+}
+
+.item button:hover,
+.registo button:hover,
+.lista-item button:hover {
+  background: #eaf1ec;
+}
+
+button.apagar {
+  background: #fff0ef !important;
+  border-color: #f0ceca !important;
+  color: var(--vermelho) !important;
+}
+
+/* ESTADOS */
+
+.estado {
+  display: inline-block;
+  padding: 5px 9px;
+  margin-top: 8px;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 600;
+  background: #e8f5ec;
+  color: #217346;
+}
+
+.estado.pendente {
+  background: #fff3d9;
+  color: #986b0d;
+}
+
+.estado.inativo {
+  background: #f0eeee;
+  color: #696969;
+}
+
+/* FINANÇAS */
+
+.resumoFinanceiro {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 23px;
+}
+
+.resumoFinanceiro > div {
+  background: white;
+  border: 1px solid var(--borda);
+  border-radius: 13px;
+  padding: 22px;
+  box-shadow: var(--sombra);
+}
+
+.resumoFinanceiro h4 {
+  color: var(--texto-suave);
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.resumoFinanceiro p {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--verde);
+  overflow-wrap: anywhere;
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(5, 20, 13, 0.7);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+.modal.escondido {
+  display: none;
+}
+
+.caixaModal {
+  background: white;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 17px;
+  padding: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  margin: auto;
+}
+
+.topoModal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.topoModal h2 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--verde);
+}
+
+.topoModal button {
+  border: 0;
+  background: #f0f3f0;
+  color: var(--texto);
+  border-radius: 8px;
+  padding: 8px 11px;
+}
+
+#formulario label {
+  display: block;
+  color: var(--texto);
+  font-weight: 500;
+  font-size: 12px;
+  margin: 5px 0 7px;
+}
+
+#formulario > button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px;
+}
+
+/* MENSAGENS */
+
+#toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 2000;
+  background: var(--verde-escuro);
+  color: white;
+  border-left: 4px solid var(--dourado);
+  padding: 14px 19px;
+  border-radius: 9px;
+  box-shadow: var(--sombra);
+  max-width: calc(100% - 44px);
+  display: none;
+}
+
+#toast.visivel {
+  display: block;
+}
+
+.vazio {
+  text-align: center;
+  padding: 30px 18px;
+  color: var(--texto-suave);
+  background: white;
+  border: 1px dashed #cbd8ce;
+  border-radius: 12px;
+}
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+  main {
+    width: 92%;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  nav {
+    padding: 0 3%;
+  }
+
+  nav button {
+    padding: 14px 12px;
+  }
+}
+
+/* TELEMÓVEIS */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 13px;
+  }
+
+  .topo {
+    padding: 14px 5%;
+  }
+
+  .logo {
+    gap: 10px;
+  }
+
+  .escudo {
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  .logo h1 {
+    font-size: 15px;
+  }
+
+  .logo span {
+    font-size: 10px;
+  }
+
+  #menuBtn {
+    display: block;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 8px 5%;
+    gap: 0;
+  }
+
+  nav.aberto {
+    display: flex;
+  }
+
+  nav button {
+    text-align: left;
+    padding: 13px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+    border-left: 3px solid transparent;
+  }
+
+  nav button.ativo {
+    border-bottom-color: rgba(255, 255, 255, 0.09);
+    border-left-color: var(--dourado);
+  }
+
+  main {
+    width: 92%;
+    margin: 20px auto;
+  }
+
+  .hero {
+    padding: 25px 20px;
+    border-radius: 14px;
+  }
+
+  .hero h2 {
+    font-size: 20px;
+  }
+
+  .hero p {
+    font-size: 12px;
+  }
+
+  .hero::after {
+    right: 10px;
+    font-size: 65px;
+  }
+
+  .cards {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    padding: 16px 13px;
+    border-radius: 11px;
+  }
+
+  .card h3 {
+    font-size: 20px;
+  }
+
+  .card p {
+    font-size: 11px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .acoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .acoes button {
+    padding: 12px 8px;
+    font-size: 11px;
+  }
+
+  .cabecalho {
+    align-items: flex-start;
+  }
+
+  .cabecalho h2 {
+    font-size: 19px;
+  }
+
+  .cabecalho button {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .item,
+  .registo,
+  .lista-item {
+    padding: 15px;
+  }
+
+  .resumoFinanceiro {
+    gap: 10px;
+  }
+
+  .resumoFinanceiro > div {
+    padding: 15px 12px;
+  }
+
+  .resumoFinanceiro p {
+    font-size: 17px;
+  }
+
+  .caixaModal {
+    padding: 19px;
+    border-radius: 14px;
+  }
+
+  .topoModal h2 {
+    font-size: 18px;
+  }
+
+  #toast {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+  }
+}
+
+/* ACESSIBILIDADE: REDUZIR ANIMAÇÕES */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* IDENTIDADE OFICIAL DA IMEA DE PEREGRINOS */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.logo-igreja {
+  width: 58px;
+  height: 64px;
+  object-fit: contain;
+  background: #ffffff;
+  border: 2px solid var(--dourado);
+  border-radius: 8px;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.identidade {
+  min-width: 0;
+}
+
+.identidade h1 {
+  color: #ffffff;
+  margin: 0 0 4px;
+}
+
+.identidade > span {
+  display: block;
+  color: #e4eee7;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.identidade .subtitulo-logo {
+  color: var(--dourado);
+  font-size: 10px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    gap: 9px;
+  }
+
+  .logo-igreja {
+    width: 43px;
+    height: 49px;
+  }
+
+  .identidade h1 {
+    font-size: 14px;
+  }
+
+  .identidade > span {
+    font-size: 9px;
+  }
+}
+
+
+/* EFEITOS DOURADOS FLUTUANTES NO PAINEL */
+
+.hero {
+  isolation: isolate;
+}
+
+.efeitos-flutuantes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.efeitos-flutuantes .flutuante {
+  position: absolute;
+  bottom: -35px;
+  color: rgba(241, 209, 139, 0.68);
+  font-size: 20px;
+  font-weight: 600;
+  animation: flutuar 9s linear infinite;
+  animation-delay: calc(var(--i) * -1.5s);
+}
+
+.efeitos-flutuantes .flutuante:nth-child(2n) {
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+@keyframes flutuar {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(-230px) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .efeitos-flutuantes .flutuante {
+    animation: none;
+    display: none;
+  }
+}

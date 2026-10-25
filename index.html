@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filhos da Além | IMEA de Peregrinos</title>
+<link rel="icon" type="image/png" href=".vscode/imea-logo.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#103D2D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Filhos da Além">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+
+  
+<div class="logo">
+    <img src=".vscode/imea-logo.png" alt="Símbolo da IMEA de Peregrinos" class="logo-igreja">
+
+    <div class="identidade">
+      <h1>Filhos da Além</h1>
+      <span>Igreja Metodista Episcopal Africana de Peregrinos</span>
+      <span class="subtitulo-logo">IMEA de Peregrinos · Painel do Presidente</span>
+    </div>
+</div>
+
+  <button id="menuBtn">☰</button>
+
+</header>
+
+<nav id="menu">
+
+  <button class="ativo" data-pagina="dashboard">🏠 Início</button>
+
+  <button data-pagina="membros">👥 Membros</button>
+
+  <button data-pagina="acompanhamento">🤝 Acompanhamento</button>
+
+  <button data-pagina="atividades">📅 Actividades</button>
+
+  <button data-pagina="financas">💰 Finanças</button>
+
+  <button data-pagina="relatorios">📊 Relatórios</button>
+
+</nav>
+
+<main>
+
+<section id="dashboard" class="pagina ativa">
+
+<div class="hero">
+
+<h2>Bem-vindo Presidente</h2>
+
+<p>Organizar pessoas. Fortalecer a união. Fazer a organização crescer.</p>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3 id="totalMembros">0</h3>
+
+<p>Membros</p>
+
+</div>
+
+<div class="card">
+
+<h3 id="totalAtividades">0</h3>
+
+<p>Actividades</p>
+
+</div>
+
+<div class="card">
+
+<h3 id="totalPendentes">0</h3>
+
+<p>Acompanhamentos</p>
+
+</div>
+
+<div class="card">
+
+<h3 id="saldoAtual">0 Kz</h3>
+
+<p>Saldo</p>
+
+</div>
+
+</div>
+
+<div class="acoes">
+
+<button onclick="abrirFormulario('membro')">Novo Membro</button>
+
+<button onclick="abrirFormulario('atividade')">Nova Actividade</button>
+
+<button onclick="abrirFormulario('acompanhamento')">Acompanhar</button>
+
+<button onclick="abrirFormulario('financeiro')">Movimento</button>
+
+</div>
+
+<h3>Próximas Actividades</h3>
+
+<div id="listaDashboardAtividades"></div>
+
+</section>
+
+<section id="membros" class="pagina">
+
+<div class="cabecalho">
+
+<h2>Membros</h2>
+
+<button onclick="abrirFormulario('membro')">+ Novo</button>
+
+</div>
+
+<input id="pesquisaMembro" placeholder="Pesquisar membro...">
+
+<div id="listaMembros"></div>
+
+</section>
+
+<section id="acompanhamento" class="pagina">
+
+<div class="cabecalho">
+
+<h2>Acompanhamento</h2>
+
+<button onclick="abrirFormulario('acompanhamento')">+ Novo</button>
+
+</div>
+
+<div id="listaAcompanhamentos"></div>
+
+</section>
+
+<section id="atividades" class="pagina">
+
+<div class="cabecalho">
+
+<h2>Actividades</h2>
+
+<button onclick="abrirFormulario('atividade')">+ Nova</button>
+
+</div>
+
+<div id="listaAtividades"></div>
+
+</section>
+
+<section id="financas" class="pagina">
+
+<div class="cabecalho">
+
+<h2>Finanças</h2>
+
+<button onclick="abrirFormulario('financeiro')">+ Movimento</button>
+
+</div>
+
+<div class="resumoFinanceiro">
+
+<div>
+<h4>Entradas</h4>
+<p id="entradaTotal">0 Kz</p>
+</div>
+
+<div>
+<h4>Despesas</h4>
+<p id="despesaTotal">0 Kz</p>
+</div>
+
+</div>
+
+<div id="listaFinanceiro"></div>
+
+</section>
+
+<section id="relatorios" class="pagina">
+
+<h2>Relatórios</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3 id="rMembros">0</h3>
+<p>Total de membros</p>
+</div>
+
+<div class="card">
+<h3 id="rAtividades">0</h3>
+<p>Actividades concluídas</p>
+</div>
+
+<div class="card">
+<h3 id="rSaldo">0 Kz</h3>
+<p>Saldo geral</p>
+</div>
+
+</div>
+
+<div class="acoes">
+
+<button onclick="exportarJSON()">Backup</button>
+
+<button onclick="document.getElementById('importar').click()">Restaurar</button>
+
+<input type="file" id="importar" hidden>
+
+</div>
+
+</section>
+
+</main>
+
+<div id="modal" class="modal escondido">
+
+<div class="caixaModal">
+
+<div class="topoModal">
+
+<h2 id="tituloModal"></h2>
+
+<button onclick="fecharModal()">✕</button>
+
+</div>
+
+<form id="formulario">
+
+<div id="camposFormulario"></div>
+
+<button type="submit">Guardar</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./service-worker.js")
+        .catch(erro => {
+          console.error("Erro ao activar o modo offline:", erro);
+        });
+    });
+  }
+</script>
+
+
+</body>
+</html>
